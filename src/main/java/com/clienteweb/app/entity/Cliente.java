@@ -22,9 +22,10 @@ public class Cliente implements Serializable {
 	private String telefono;
 	private String email;
 
-	/*Indicamos la relación muchos clientes - una ciudad*/
-	@ManyToOne
-	@JoinColumn(name = "ciudades_id")
+	/* Indicamos la relación muchos clientes - una ciudad */
+	
+	  @ManyToOne
+	  @JoinColumn(name = "ciudades_id")
 	private Ciudad ciudad;
 
 	public Long getId() {
