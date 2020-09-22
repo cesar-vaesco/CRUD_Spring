@@ -32,5 +32,10 @@ public class ClienteController {
 		List<Cliente> cliente = clienteService.listarTodos();
 		return ResponseEntity.ok(cliente);
 	}
+	
+	@GetMapping("/create")
+	public String crear() {
+		return "/views/clientes/formCrear";
+	}
 
 }
