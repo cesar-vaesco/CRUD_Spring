@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.clienteweb.app.entity.Ciudad;
@@ -57,4 +59,11 @@ public class ClienteController {
 		return "/views/clientes/formCrear";
 	}
 
+	@PostMapping("/save")
+	public String guardar(@ModelAttribute Cliente cliente) {
+		clienteService.guardar(cliente);
+		System.out.println("Cliente guardado con exito");
+		return "redirect:/views/clientes/";
+	}
+	
 }
