@@ -24,6 +24,9 @@ public class ClienteController {
 	@Autowired
 	private ICiudadService ciudadService;
 
+	/*
+	 * http://localhost:8080/views/clientes/
+	 * */
 	@GetMapping("/")
 	public String listarClientes(Model model) {
 		List<Cliente> listadoCliente = clienteService.listarTodos();
@@ -32,15 +35,20 @@ public class ClienteController {
 		return "/views/clientes/listar";
 	}
 
+	/*
+	 * http://localhost:8080/views/clientes/prueba
+	 * */
 	@GetMapping("/prueba")
 	public ResponseEntity<List<Cliente>> listarClientesDos() {
 		List<Cliente> cliente = clienteService.listarTodos();
 		return ResponseEntity.ok(cliente);
 	}
 
+	/*
+	 * http://localhost:8080/views/clientes/create
+	 * */
 	@GetMapping("/create")
 	public String crear(Model model) {
-
 		Cliente cliente = new Cliente();
 		List<Ciudad> listCiudades = ciudadService.listaCiudades();
 		model.addAttribute("titulo", "Formulario: Nuevo cliente");
