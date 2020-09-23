@@ -11,8 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
-
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "clientes")
@@ -26,15 +25,16 @@ public class Cliente implements Serializable {
 	@NotEmpty
 	private String apellidos;
 	@NotEmpty
+	@Pattern(regexp = "[0-9]{4}-[0-9]{4}")
 	private String telefono;
 	@NotEmpty
 	@Email
 	private String email;
 
 	/* Indicamos la relación muchos clientes - una ciudad */
-	
-	  @ManyToOne
-	  @JoinColumn(name = "ciudades_id")
+
+	@ManyToOne
+	@JoinColumn(name = "ciudades_id")
 	private Ciudad ciudad;
 
 	public Long getId() {
