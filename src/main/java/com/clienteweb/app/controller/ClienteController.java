@@ -80,7 +80,11 @@ public class ClienteController {
 		model.addAttribute("ciudades", listCiudades);
 		return "/views/clientes/formCrear";
 	}
-	public String eliminarRegistro() {
+	
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") Long idCliente) {
+		clienteService.eliminar(idCliente);
+		System.out.println("Registro eliminado con exito!");
 		return "redirect:/views/clientes/";
 	}
 }
