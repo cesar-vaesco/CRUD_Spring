@@ -13,6 +13,7 @@
 				<!-- Recibe el objeto que se va a guardar th:object="${cliente}" -->
 				<form th:action="@{/views/clientes/save}" th:object="${cliente}" method="post">
 					<div class="form-group row">
+						<input type="hidden" th:field="*{id}">
 						<label class="col-md-2" for="nombres">Nombres:</label> <input
 							type="text" th:field="*{nombres}" class="form-control form-control-sm col-md-6"
 							id="nombres" placeholder="Nombres del cliente"><small></small>
