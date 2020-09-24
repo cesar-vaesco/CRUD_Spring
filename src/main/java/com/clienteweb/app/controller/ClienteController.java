@@ -84,21 +84,21 @@ public class ClienteController {
 	 */
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable("id") Long idCliente, Model model) {
-			
+
 		Cliente cliente = null;
-		
+
 		if (idCliente > 0) {
 			cliente = clienteService.buscarPorId(idCliente);
-			
+
 			if (cliente == null) {
 				System.out.println("Error: El ID del cliente no existe!");
 				return "redirect:/views/clientes/";
 			}
-		}else {
+		} else {
 			System.out.println("Error: Error con el ID del Cliente");
 			return "redirect:/views/clientes/";
 		}
-		
+
 		List<Ciudad> listCiudades = ciudadService.listaCiudades();
 
 		model.addAttribute("titulo", "Formulario: Editar Cliente");
@@ -110,8 +110,22 @@ public class ClienteController {
 
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable("id") Long idCliente) {
+
+		Cliente cliente = null;
+
+		if (idCliente > 0) {
+			cliente = clienteService.buscarPorId(idCliente);
+
+			if (cliente == null) {
+				System.out.println("Error: El ID del cliente no existe!");
+				return "redirect:/views/clientes/";
+			}
+		} else {
+			System.out.println("Error: Error con el ID del Cliente");
+			return "redirect:/views/clientes/";
+		}
 		clienteService.eliminar(idCliente);
-		System.out.println("Registro eliminado con exito!");
+		System.out.println("Registro " + idCliente + " eliminado con exito!");
 		return "redirect:/views/clientes/";
 	}
 
