@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.clienteweb.app.entity.Ciudad;
 import com.clienteweb.app.entity.Cliente;
@@ -64,7 +65,8 @@ public class ClienteController {
 	}
 
 	@PostMapping("/save")
-	public String guardar(@Valid @ModelAttribute Cliente cliente, BindingResult result, Model model) {
+	public String guardar(@Valid @ModelAttribute Cliente cliente, BindingResult result, Model model,
+			RedirectAttributes attribute) {
 		List<Ciudad> listCiudades = ciudadService.listaCiudades();
 
 		if (result.hasErrors()) {
@@ -76,6 +78,7 @@ public class ClienteController {
 		}
 		clienteService.guardar(cliente);
 		System.out.println("Cliente guardado con exito");
+		attribute.addFlashAttribute("success", "Cliente guardado con exito");
 		return "redirect:/views/clientes/";
 	}
 
@@ -83,7 +86,7 @@ public class ClienteController {
 	 * http://localhost:8080/views/clientes/edit/{id}
 	 */
 	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") Long idCliente, Model model) {
+	public String editar(@PathVariable("id") Long idCliente, Model model, RedirectAttributes attribute) {
 
 		Cliente cliente = null;
 
@@ -92,10 +95,12 @@ public class ClienteController {
 
 			if (cliente == null) {
 				System.out.println("Error: El ID del cliente no existe!");
+				attribute.addFlashAttribute("warning", "ATENCIÓN: No se puede editar el registro - el ID del cliente no existe!");
 				return "redirect:/views/clientes/";
 			}
 		} else {
 			System.out.println("Error: Error con el ID del Cliente");
+			attribute.addFlashAttribute("error", "ATENCIÓN: Error con el ID del cliente !");
 			return "redirect:/views/clientes/";
 		}
 
@@ -109,7 +114,7 @@ public class ClienteController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String eliminar(@PathVariable("id") Long idCliente) {
+	public String eliminar(@PathVariable("id") Long idCliente, RedirectAttributes attribute) {
 
 		Cliente cliente = null;
 
@@ -118,14 +123,18 @@ public class ClienteController {
 
 			if (cliente == null) {
 				System.out.println("Error: El ID del cliente no existe!");
+				attribute.addFlashAttribute("error", "ATENCIÓN: No se puede borrar el registro, el ID del cliente no existe!");
 				return "redirect:/views/clientes/";
 			}
 		} else {
 			System.out.println("Error: Error con el ID del Cliente");
+			attribute.addFlashAttribute("error", "ATENCIÓN: No se puede borrar el registro, error con el ID del cliente !");
 			return "redirect:/views/clientes/";
 		}
 		clienteService.eliminar(idCliente);
 		System.out.println("Registro " + idCliente + " eliminado con exito!");
+		attribute.addFlashAttribute("warning", "ATENCIÓN: Registro eliminado con éxito !");
+
 		return "redirect:/views/clientes/";
 	}
 
