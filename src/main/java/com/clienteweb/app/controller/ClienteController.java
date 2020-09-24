@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.clienteweb.app.entity.Ciudad;
 import com.clienteweb.app.entity.Cliente;
 import com.clienteweb.app.service.ICiudadService;
@@ -85,11 +84,27 @@ public class ClienteController {
 	 */
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable("id") Long idCliente, Model model) {
-		Cliente cliente = clienteService.buscarPorId(idCliente);
+			
+		Cliente cliente = null;
+		
+		if (idCliente > 0) {
+			cliente = clienteService.buscarPorId(idCliente);
+			
+			if (cliente == null) {
+				System.out.println("Error: El ID del cliente no existe!");
+				return "redirect:/views/clientes/";
+			}
+		}else {
+			System.out.println("Error: Error con el ID del Cliente");
+			return "redirect:/views/clientes/";
+		}
+		
 		List<Ciudad> listCiudades = ciudadService.listaCiudades();
-		model.addAttribute("titulo", "Formulario: Editar cliente");
+
+		model.addAttribute("titulo", "Formulario: Editar Cliente");
 		model.addAttribute("cliente", cliente);
 		model.addAttribute("ciudades", listCiudades);
+
 		return "/views/clientes/formCrear";
 	}
 
@@ -99,4 +114,5 @@ public class ClienteController {
 		System.out.println("Registro eliminado con exito!");
 		return "redirect:/views/clientes/";
 	}
+
 }
