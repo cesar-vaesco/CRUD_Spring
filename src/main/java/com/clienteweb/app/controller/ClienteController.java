@@ -36,9 +36,9 @@ public class ClienteController {
 	 */
 	@GetMapping("/")
 	public String listarClientes(Model model) {
-		List<Cliente> listadoCliente = clienteService.listarTodos();
+		List<Cliente> listadoClientes = clienteService.listarTodos();
 		model.addAttribute("titulo", "Lista de Clientes");
-		model.addAttribute("clientes", listadoCliente);
+		model.addAttribute("clientes", listadoClientes);
 		return "/views/clientes/listar";
 	}
 
