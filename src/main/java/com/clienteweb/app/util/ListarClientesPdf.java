@@ -40,8 +40,11 @@ public class ListarClientesPdf extends AbstractPdfView{
 		 * y mostrar horizontal(rotate()) - para aplicar los cambios se aplica la función open()
 		 * */
 		document.setPageSize(PageSize.LETTER.rotate());
+		document.setMargins(-20, -20, 40, 20);
 		document.open();
-		
+		/*
+		 * Para más ejemplos de como modificar las celdas en: https://github.com/LibrePDF/OpenPDF/tree/master/pdf-toolbox/src/test/java/com/lowagie/examples
+		 * */
 		PdfPTable tablaTitulo = new PdfPTable(1);
 		PdfPCell celda = null;
 		
