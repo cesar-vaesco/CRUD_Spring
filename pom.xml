@@ -70,7 +70,7 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-		<!-- Generar archvos PDF -->
+		<!-- Generar archivos PDF || https://github.com/LibrePDF/OpenPDF -->
 		<dependency>
 			<groupId>com.github.librepdf</groupId>
 			<artifactId>openpdf</artifactId>
