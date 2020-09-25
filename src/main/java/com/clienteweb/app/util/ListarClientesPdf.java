@@ -11,6 +11,9 @@ import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.clienteweb.app.entity.Cliente;
 import com.lowagie.text.Document;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
@@ -24,8 +27,23 @@ public class ListarClientesPdf extends AbstractPdfView{
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		@SuppressWarnings("unchecked")
 		List<Cliente> listadoClientes = (List<Cliente>) model.get("clientes");
+		
+		/*
+		 * dar tamaño de hoja y formato, para el ejemplo es tamaño carta (LETTER) 
+		 * y mostrar horizontal(rotate()) - para aplicar los cambios se aplica la función open()
+		 * */
+		document.setPageSize(PageSize.LETTER.rotate());
+		document.open();
+		
+		PdfPTable tablaTitulo = new PdfPTable(1);
+		PdfPCell celda = null;
+		celda = new PdfPCell(new Phrase("LISTADO GENERAL DE CLIENTES"));
+		tablaTitulo.addCell(celda);
+		
+		
 		PdfPTable tablaClientes = new PdfPTable(6);
 		listadoClientes.forEach(cliente -> {
 					tablaClientes.addCell(cliente.getId().toString());
@@ -36,6 +54,7 @@ public class ListarClientesPdf extends AbstractPdfView{
 					tablaClientes.addCell(cliente.getCiudad().getCiudad());
 		});
 		
+		document.add(tablaTitulo);
 		document.add(tablaClientes);
 	}
 
