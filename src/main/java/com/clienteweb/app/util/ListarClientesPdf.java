@@ -1,5 +1,6 @@
 package com.clienteweb.app.util;
 
+import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,9 @@ import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.clienteweb.app.entity.Cliente;
 import com.lowagie.text.Document;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
@@ -40,8 +44,18 @@ public class ListarClientesPdf extends AbstractPdfView{
 		
 		PdfPTable tablaTitulo = new PdfPTable(1);
 		PdfPCell celda = null;
-		celda = new PdfPCell(new Phrase("LISTADO GENERAL DE CLIENTES"));
+		
+		Font fuenteTitulo = FontFactory.getFont("Helvetica",18,Color.WHITE);
+		celda = new PdfPCell(new Phrase("LISTADO GENERAL DE CLIENTES", fuenteTitulo));
+		celda.setBorder(0);
+		celda.setBackgroundColor(new Color(40,190,138));
+		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setVerticalAlignment(Element.ALIGN_CENTER);
+		celda.setPadding(30);
+		
 		tablaTitulo.addCell(celda);
+		/*Dando espacio al titulo del cuerpo de la tabla*/
+		tablaTitulo.setSpacingAfter(30);
 		
 		
 		PdfPTable tablaClientes = new PdfPTable(6);
