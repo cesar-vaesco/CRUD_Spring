@@ -18,4 +18,11 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("com.clienteweb.app.controller")).paths(PathSelectors.any()).build();
 	}
+	
+	/*
+	 * Se agrega la ruta del paquete donde se encuentra el controllador 
+	 * 
+	 * Ver en formato Json la documentación:  http://localhost:8080/v2/api-docs
+	 * Ver la docuemntación en una interfaz:   http://localhost:8080/swagger-ui.html
+	 * */
 }
