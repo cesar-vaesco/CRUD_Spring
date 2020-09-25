@@ -40,7 +40,7 @@ public class ListarClientesPdf extends AbstractPdfView{
 		/*Fuentes, tamaños y colores para cada seccion*/
 		Font fuenteTitulo = FontFactory.getFont(FontFactory.HELVETICA_BOLD,20,Color.WHITE);
 		Font fuenteTituloColumnas = FontFactory.getFont(FontFactory.HELVETICA_BOLD ,13,new Color(40,190,138));
-		Font fuenteDataCeldas = FontFactory.getFont(FontFactory.COURIER ,10,Color.BLACK);
+		Font fuenteDataCeldas = FontFactory.getFont(FontFactory.COURIER ,11,Color.BLACK);
 		
 		/*Dar tamaño y formato, para el ejemplo es tamaño carta y formato en horizontal */
 		document.setPageSize(PageSize.LETTER.rotate());
@@ -63,46 +63,46 @@ public class ListarClientesPdf extends AbstractPdfView{
 		
 		/*Tabla Para Mostrar Listado de Clientes*/
 		PdfPTable tablaClientes = new PdfPTable(6);
-		tablaClientes.setWidths(new float[] {0.8f, 2f, 2f, 2f, 3.5f, 1.5f});		
+		tablaClientes.setWidths(new float[] {0.8f, 1.8f, 2f, 2f, 3f, 2f});		
 		
 		celda = new PdfPCell(new Phrase("ID", fuenteTituloColumnas));
-		celda.setBackgroundColor(Color.lightGray);
-		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setBackgroundColor(Color.BLACK);
+		celda.setHorizontalAlignment(Element.ALIGN_LEFT);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
 		celda.setPadding(10);
 		tablaClientes.addCell(celda);
 		
 		celda = new PdfPCell(new Phrase("NOMBRES", fuenteTituloColumnas));
-		celda.setBackgroundColor(Color.lightGray);
-		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setBackgroundColor(Color.BLACK);
+		celda.setHorizontalAlignment(Element.ALIGN_LEFT);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
 		celda.setPadding(10);
 		tablaClientes.addCell(celda);
 		
 		celda = new PdfPCell(new Phrase("APELLIDOS", fuenteTituloColumnas));
-		celda.setBackgroundColor(Color.lightGray);
-		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setBackgroundColor(Color.BLACK);
+		celda.setHorizontalAlignment(Element.ALIGN_LEFT);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
 		celda.setPadding(10);
 		tablaClientes.addCell(celda);
 		
 		celda = new PdfPCell(new Phrase("TELEFONO", fuenteTituloColumnas));
-		celda.setBackgroundColor(Color.lightGray);
-		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setBackgroundColor(Color.BLACK);
+		celda.setHorizontalAlignment(Element.ALIGN_LEFT);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
 		celda.setPadding(10);
 		tablaClientes.addCell(celda);
 		
 		celda = new PdfPCell(new Phrase("EMAIL", fuenteTituloColumnas));
-		celda.setBackgroundColor(Color.lightGray);
-		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setBackgroundColor(Color.BLACK);
+		celda.setHorizontalAlignment(Element.ALIGN_LEFT);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
 		celda.setPadding(10);
 		tablaClientes.addCell(celda);
 		
 		celda = new PdfPCell(new Phrase("CIUDAD", fuenteTituloColumnas));
-		celda.setBackgroundColor(Color.lightGray);
-		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setBackgroundColor(Color.BLACK);
+		celda.setHorizontalAlignment(Element.ALIGN_LEFT);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
 		celda.setPadding(10);
 		tablaClientes.addCell(celda);		
