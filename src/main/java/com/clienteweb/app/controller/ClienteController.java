@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.clienteweb.app.entity.Ciudad;
@@ -37,9 +39,17 @@ public class ClienteController {
 	@GetMapping("/")
 	public String listarClientes(Model model) {
 		List<Cliente> listadoClientes = clienteService.listarTodos();
-		model.addAttribute("titulo", "Lista de Clientes");
+		model.addAttribute("titulo", "Administración de Clientes");
 		model.addAttribute("clientes", listadoClientes);
 		return "/views/clientes/listar";
+	}
+
+	@GetMapping("/imprimir-reportes")
+	public String reportes(Model model) {
+		List<Cliente> listadoClientes = clienteService.listarTodos();
+		model.addAttribute("titulo", "Lista de Clientes");
+		model.addAttribute("clientes", listadoClientes);
+		return "/views/clientes/imprimir-reportes";
 	}
 
 	/*
@@ -95,7 +105,8 @@ public class ClienteController {
 
 			if (cliente == null) {
 				System.out.println("Error: El ID del cliente no existe!");
-				attribute.addFlashAttribute("warning", "ATENCIÓN: No se puede editar el registro - el ID del cliente no existe!");
+				attribute.addFlashAttribute("warning",
+						"ATENCIÓN: No se puede editar el registro - el ID del cliente no existe!");
 				return "redirect:/views/clientes/";
 			}
 		} else {
@@ -123,12 +134,14 @@ public class ClienteController {
 
 			if (cliente == null) {
 				System.out.println("Error: El ID del cliente no existe!");
-				attribute.addFlashAttribute("error", "ATENCIÓN: No se puede borrar el registro, el ID del cliente no existe!");
+				attribute.addFlashAttribute("error",
+						"ATENCIÓN: No se puede borrar el registro, el ID del cliente no existe!");
 				return "redirect:/views/clientes/";
 			}
 		} else {
 			System.out.println("Error: Error con el ID del Cliente");
-			attribute.addFlashAttribute("error", "ATENCIÓN: No se puede borrar el registro, error con el ID del cliente !");
+			attribute.addFlashAttribute("error",
+					"ATENCIÓN: No se puede borrar el registro, error con el ID del cliente !");
 			return "redirect:/views/clientes/";
 		}
 		clienteService.eliminar(idCliente);

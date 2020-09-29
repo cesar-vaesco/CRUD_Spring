@@ -6,9 +6,12 @@
 <body>
 	<header th:replace="plantilla/template :: header"></header>
 	<div class="container">
-		<h1>Hola desde SpringBoot</h1>
+		<h1 th:text="${titulo}"></h1>
+		<!--<p th:text="${clientes}"></p>  -->
+		
+	
 	</div>
-		<div class="container">
+	<div class="container">
 
 		<br>
 		<div th:if="${!list.isEmpty()}">
@@ -22,7 +25,6 @@
 						<th scope="col">Teléfono</th>
 						<th scope="col">Correo</th>
 						<th scope="col">Ciudad</th>
-
 					</tr>
 				</thead>
 				<tbody>
@@ -59,7 +61,5 @@
 			<!-- <nav th:replace="plantilla/paginator-nav :: paginator"></nav>-->
 		</div>
 	</div>
-
 	<footer th:replace="plantilla/template :: footer"></footer>
-</body>
 </html>

@@ -10,10 +10,21 @@
 		<!--<p th:text="${clientes}"></p>  -->
 	</div>
 	<div class="container">
-		<a class="btn btn-primary " th:href="@{/views/clientes/create}"
-			th:text="'Nuevo cliente'" title="Crear Nuevo Registro"></a>
 
-		
+
+		<!-- Botón para mostrar PDF -->
+		<a class="nav-link float-right"
+			th:href="@{/views/clientes/?format=pdf}"
+			title="Exportar a PDF" target="_black"> <img
+			class="img-responsive center-box" th:src="@{/images/pdf.png}">
+		</a>
+		<!-- Botón para crear EXCEL -->
+		<a class="nav-link float-right"
+			th:href="@{/views/clientes/?format=xlsx} " title="Exportar a EXCEL">
+			<img class="img-responsive center-box" th:src="@{/images/excel.png}">
+		</a>
+	
+
 		<!-- Imagen estraida de flaticon.es -->
 		<table class="table">
 			<thead class="thead-dark">
@@ -24,8 +35,7 @@
 					<th scope="col">Teléfono</th>
 					<th scope="col">Correo</th>
 					<th scope="col">Ciudad</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
+
 
 				</tr>
 			</thead>
@@ -38,21 +48,14 @@
 					<td th:text="${cl.email}">Mark</td>
 					<td th:text="${cl.ciudad.ciudad}">Mark</td>
 
-					<td><a class="btn btn-success btn-sm"
-						th:href="@{/views/clientes/edit/} + ${cl.id}" th:text="'Editar'"
-						title="Modificar Registro"></a></td>
-					<td><a class="btn btn-danger btn-sm"
-						th:href="@{/views/clientes/delete/} + ${cl.id}"
-						th:text="'Eliminar'" title="Eliminar Registro"
-						onclick="return confirm('Esta seguro de eliminar el registro?');"></a>
-					</td>
+
 
 				</tr>
 
 			</tbody>
 		</table>
-		<!-- <nav th:replace="plantilla/paginator-nav :: paginator"></nav>-->
 	</div>
 
 	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
 </html>
