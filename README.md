@@ -7,7 +7,8 @@
 - Mysql
 - JPA
 - Thymeleaf
+- Paginación de registros
 - Validation (Validar datos para llenar formulario)
 - Swagger (Documentación)
 - OpenPDF (Generar PDF)
-- poi-ooxml (Generar docuemntos excel - xlsx)
+- poi-ooxml (Generar documentos en formato excel - xlsx)
